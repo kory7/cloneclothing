@@ -1,12 +1,13 @@
 import React from "react";
 import MenuItem from "./../menu-item/menu-item.component";
 import "./directory.styles.scss";
-
+//Este es el componente que distribuye los datos del state.
 export default class Directory extends React.Component {
   constructor() {
     super();
     this.state = {
       sections: [
+        //En este state vienen todo la informacion que necesita para los componentes.
         {
           title: "hats",
           imageUrl: "https://i.ibb.co/cvpntL1/hats.png",
@@ -45,8 +46,13 @@ export default class Directory extends React.Component {
   render() {
     return (
       <div className="directory-menu">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem title={title} key={id} image={imageUrl} size={size} />
+        {this.state.sections.map((
+          {
+            id,
+            ...otherSectionProps
+          } /** A traves de la funcion map se pasamos datos del state por props al Menu Item */
+        ) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
